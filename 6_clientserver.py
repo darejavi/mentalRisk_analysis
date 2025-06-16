@@ -86,6 +86,7 @@ class Client_task1_2:
         self.relevant_cols = ['duration', 'emissions', 'cpu_energy', 'gpu_energy',
                               'ram_energy','energy_consumed', 'cpu_count', 'gpu_count',
                               'cpu_model', 'gpu_model', 'ram_total_size','country_iso_code']
+        #Inicializar todas las variables necesarias
         self.total_users=set()
         self.round_users=set()
         self.flagged_users_run1=[]
@@ -147,6 +148,8 @@ class Client_task1_2:
         type_addiction_decision = {}
         round_number = messages[0]["round"] if messages else "?"
         # You must create the appropriate structure to send the predictions according to each task
+
+        #Mandar como 1 los usuarios detectados como adictos, y mandar como 0 los que ya hayan acabado mensajes
         print(f"\n======= ROUND {round_number} =======")
         print(f"Run 1: Users predicted {self.flagged_users_run1}:")
         for nick in self.flagged_users_run1:
@@ -241,6 +244,8 @@ class Client_task1_2:
             with open('./data/preds/task2/round{}_run{}.json'.format(messages[0]["round"], run), 'w+', encoding='utf8') as json_file:
                 json.dump(data2[run], json_file, ensure_ascii=False)
             """
+
+            #Añadir los usuarios detectados a los usuarios mandados, para no procesarlos más
             self.sended_users_run1 += self.flagged_users_run1
             self.sended_users_run2 += self.flagged_users_run2
             self.sended_users_run3 += self.flagged_users_run3
