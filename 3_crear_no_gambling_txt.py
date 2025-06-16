@@ -6,6 +6,7 @@ ruta_etiquetas = "task1_train/gold_task1.txt"
 ruta_jsons = "task1_train/subjects"
 salida = "non_gambling.txt"
 
+#Usar los usuarios no adictos
 non_gambling_users = []
 with open(ruta_etiquetas, "r", encoding="utf-8") as f:
     for line in f:
@@ -16,7 +17,7 @@ with open(ruta_etiquetas, "r", encoding="utf-8") as f:
         if label.strip() == "0":
             non_gambling_users.append(nick.strip())
 
-
+#Recorrer sus ficheros e ir guardando mensajes
 mensajes_usuarios = []
 for nick in non_gambling_users:
     json_path = os.path.join(ruta_jsons, f"{nick}.json")
@@ -28,9 +29,7 @@ for nick in non_gambling_users:
                 if texto:
                     mensajes_usuarios.append(texto)
 
-
+#Escribir mensajes
 with open(salida, "w", encoding="utf-8") as f:
     for msg in mensajes_usuarios:
         f.write(msg + "\n")
-
-print(f"Archivo '{salida}' creado correctamente.")
