@@ -19,7 +19,7 @@ with open("task1_train/gold_task1.txt", "r", encoding="utf-8") as f:
 
 usuarios_datos = {}
 directorio_datos = "task1_train/subjects"
-
+#Crear el diccionario concatenando para cada usuario todo su texto
 for filename in os.listdir(directorio_datos):
     if filename.endswith(".json"):
         nick = filename.replace(".json", "")
@@ -34,7 +34,7 @@ for filename in os.listdir(directorio_datos):
                 texto = " ".join(mensaje)
                 usuarios_datos[nick] = {"text": texto, "risk": usuarios_riesgos[nick]}
 
-
+#Preparar los datos para el modelo SVC
 textos = []
 y = []
 for data in usuarios_datos.values():
