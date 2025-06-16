@@ -54,7 +54,7 @@ for user in usuarios_gambling:
                 if probs[0][1]>confianza:
                     if user not in Tp:
                         Tp.append(user)
-
+#Escritura de los resultados
 with open('true_positives_y_false_negatives.txt', 'w', encoding='utf-8') as out_file:
     out_file.write(f"Hay {len(Tp)} true positives, {len(usuarios_gambling)-len(Tp)} false negatives\n y {len(Fp)} false positives en un total de {len(usuarios_gambling)+len(usuarios_no_gambling)} usuarios")
     for user in usuarios_gambling:
